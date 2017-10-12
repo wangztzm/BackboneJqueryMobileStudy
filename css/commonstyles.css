@@ -1,0 +1,8 @@
+.ui-header, .ui-footer,.ui-content {
+    text-align: center;
+}
+.ui-footer{
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
