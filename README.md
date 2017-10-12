@@ -1,0 +1,2 @@
+# BackboneJqueryMobileStudy
+学习用BackBone和jqueryMobile做的例子 参照 Backbone-Require-Boilerplate 改的
