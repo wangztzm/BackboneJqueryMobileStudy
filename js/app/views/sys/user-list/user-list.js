@@ -22,6 +22,7 @@ define(["jquery", "backbone", "client", "utils",
             events: {
                 "click #backBtn": "goBack",
                 "click #back": "goBack",
+                "click #ajaxTestBtn": "ajaxTest",
             },
 
             // Renders the view's template to the UI
@@ -45,6 +46,14 @@ define(["jquery", "backbone", "client", "utils",
 
             goBack: function () {
                 Utils.backToPage("home");
+            },
+
+            ajaxTest: function () {
+                Utils.showMessage();
+                Client.testApiPost(null, function(rs){
+                    Utils.hideMessage();
+                    Utils.showAlert({content: rs.Description});
+                })
             }
 
         });

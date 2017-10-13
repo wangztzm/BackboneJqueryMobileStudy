@@ -164,52 +164,16 @@ define(['jquery', 'underscore', 'backbone', 'store', 'utils', 'en-us', 'zh-cn', 
             },
 
             /**
-             新建用户
+             测试用
              **/
-            addUser: function (data, callback) {
+            testApiPost: function (data, callback) {
                 var self = this;
-                self.post(data, '/admin/test/testWangzt/save', function (rs) {
+                self.post(data, '/api/iGSA/getCookiesUserData', function (rs) {
                     if(callback){
                         callback(rs);
                     }
                 }, 'json');
             },
-
-            /**
-             删除用户
-             **/
-            deleteUser: function (data, callback) {
-                var self = this;
-                self.post(data, '/admin/test/testWangzt/delete', function (rs) {
-                    if(callback){
-                        callback(rs);
-                    }
-                }, 'json');
-            },
-
-            /**
-             更新用户
-             **/
-            updateUser: function (data, callback) {
-                var self = this;
-                self.post(data, '/admin/test/testWangzt/update', function (rs) {
-                    if(callback){
-                        callback(rs);
-                    }
-                }, 'json');
-            },
-
-            /**
-             查询用户
-             **/
-            findUser: function (data, callback) {
-                var self = this;
-                self.post(data, '/admin/test/testWangzt/list', function (rs) {
-                    if(callback){
-                        callback(rs);
-                    }
-                }, 'json');
-            }
         };
         return Client;
     });
