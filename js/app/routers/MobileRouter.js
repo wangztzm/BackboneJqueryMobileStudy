@@ -6,6 +6,8 @@ define(["jquery", "backbone", "app/views/sys/login/login", "app/views/sys/home/h
 
         var MobileRouter = Backbone.Router.extend({
 
+            // 保存当前视图
+            currentView: null,
             initialize: function () {
 
                 // Tells Backbone to start watching for hashchange events
@@ -25,20 +27,29 @@ define(["jquery", "backbone", "app/views/sys/login/login", "app/views/sys/home/h
 
             index: function () {
                 var startView = this.getQueryString('forward');
+                // 销毁旧视图
+                this.removeView();
+                var newView = null;
                 if(startView === 'login'){
-                    new LoginView();
+                    newView =  new LoginView();
                 } else {
                     // Instantiates a new view which will render the header text to the page
-                    new HomeView();
+                    newView = new HomeView();
                 }
+
+                this.currentView = newView;
             },
 
             forward: function (forwardPath) {
+                // 销毁旧视图
+                this.removeView();
+                var newView = null;
                 if (forwardPath == 'home') {
-                    new HomeView();
+                    newView = new HomeView();
                 } else if (forwardPath == 'user-list') {
-                    new UserListsView()
+                    newView = new UserListsView();
                 }
+                this.currentView = newView;
             },
 
             // 获取url中的参数
@@ -47,8 +58,17 @@ define(["jquery", "backbone", "app/views/sys/login/login", "app/views/sys/home/h
                 var r = window.location.search.substr(1).match(reg);
                 if (r != null)return unescape(r[2]);
                 return null;
-            }
+            },
 
+            // 销毁旧的视图，解除旧视图绑定的事件.
+            removeView: function(){
+                var oldView = this.currentView;
+                if(oldView){
+                    oldView.undelegateEvents();
+                    oldView.$el.children().remove();
+                    oldView.stopListening();
+                }
+            }
         });
 
         // Returns the MobileRouter class

@@ -15,7 +15,6 @@ define(["jquery", "backbone", "underscore", "client", "utils", "store",
 
                 // Calls the view's render method
                 this.render();
-                this.bind("reset", this.updateView);
 
 
             },
@@ -47,7 +46,6 @@ define(["jquery", "backbone", "underscore", "client", "utils", "store",
             },
 
             goNextPage: function () {
-                this.undelegateEvents();
                 Utils.jumpToPage("user-list");
             }
 
