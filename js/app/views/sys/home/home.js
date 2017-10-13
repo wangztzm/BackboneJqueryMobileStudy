@@ -15,8 +15,6 @@ define(["jquery", "backbone", "underscore", "client", "utils", "store",
 
                 // Calls the view's render method
                 this.render();
-
-
             },
 
             // View Event Handlers
